@@ -14,7 +14,7 @@ class AallCountris {
   getdata() async {
     //  عمل متغير ووضع قيمته في وقت لاحق
     Response response = await get(
-        Uri.parse('http://worldtimeapi.org/api/timezone/Africa/Cairo'));
+        Uri.parse('http://worldtimeapi.org/api/timezone/$link'));
     // تخزين الجيسون بداخل متغير عام عبارة عن ماب
     Map receivedData = jsonDecode(response.body);
     //  تحويل الداتا من استرينج لوقت

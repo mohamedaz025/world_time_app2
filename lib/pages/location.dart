@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter_world_time_app/classes/class.dart';
@@ -39,11 +39,16 @@ class _LocationState extends State<Location> {
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
                     child: ListTile(
-                      onTap: () {
+                      onTap: () async {
+                        AallCountris clickedcountry = allCountris[index];
+
+                        //  كتابة المتغير المخزن بداخلة الكلاس ثم الفونكشون
+                        await clickedcountry.getdata();
+
                         Navigator.pop(context, {
-                          "time": "01:30 am",
-                          "location": "Tunis",
-                          "isdaytime": true
+                          "time": clickedcountry.timenow ,
+                          "location":clickedcountry.timezone,
+                          "isdaytime": clickedcountry.isdaytime
                         });
                       },
                       title: Text(
