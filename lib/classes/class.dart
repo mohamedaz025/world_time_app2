@@ -7,7 +7,7 @@ class AallCountris {
   String countryName;
   String link;
   AallCountris({required this.flag, required this.countryName,required this.link});
-
+//  وضع قيمة المتغير لاحقا
   late bool isdaytime;
   late String timenow;
   late String timezone;

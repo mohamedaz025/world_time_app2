@@ -14,7 +14,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     // استقبال الداتا من الاسكرين السابقة ووضعها داخل متغير
-     data = data.isEmpty? ModalRoute.of(context)!.settings.arguments as Map: data;
+    data =
+        data.isEmpty ? ModalRoute.of(context)!.settings.arguments as Map : data;
     String bgimg = data["isdaytime"] ? "day.png" : "night.png";
 
     return Scaffold(
@@ -30,14 +31,23 @@ class _HomeState extends State<Home> {
             children: [
               ElevatedButton.icon(
                 onPressed: () async {
-                  dynamic result =
-                      await Navigator.pushNamed(context, '/location');
+                  // استقبال الداتا من القائمه التاليه وتخذنها في متغير 
+                  dynamic result =await Navigator.pushNamed(context, '/location');
                   setState(() {
-                    data = {
-                      "timenow": result["time"],
-                      "timezone": result["location"],
-                      "isdaytime": result["isdaytime"]
-                    };
+                    // اذا رجع المستخدم بدون اختيار ينفذ هذا الشرط
+                    if (result == null) {
+                      data = {
+                        "timenow": "",
+                        "timezone": "pless choose a location",
+                        "isdaytime": false
+                      };
+                    } else {
+                      data = {
+                        "timenow": result["time"],
+                        "timezone": result["location"],
+                        "isdaytime": result["isdaytime"]
+                      };
+                    }
                   });
                 },
                 icon: Icon(

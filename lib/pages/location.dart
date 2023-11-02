@@ -29,25 +29,28 @@ class _LocationState extends State<Location> {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 191, 191, 199),
         appBar: AppBar(
+          // حذف سهم الرجو
+          automaticallyImplyLeading: false,
           title: Text("Choose Location"),
           backgroundColor: Colors.grey,
         ),
         body: SizedBox(
+            // تكرار الداته لعدد غير معلوم
             child: ListView.builder(
                 padding: EdgeInsets.all(8),
+                // تكرا الداتا علي حسب كول الليست
                 itemCount: allCountris.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
                     child: ListTile(
                       onTap: () async {
+                        // استدعاء الليست وتخذنها في متغير ثم جعل المتغير يساوي الانديكس الخاص بالليست
                         AallCountris clickedcountry = allCountris[index];
-
                         //  كتابة المتغير المخزن بداخلة الكلاس ثم الفونكشون
                         await clickedcountry.getdata();
-
                         Navigator.pop(context, {
-                          "time": clickedcountry.timenow ,
-                          "location":clickedcountry.timezone,
+                          "time": clickedcountry.timenow,
+                          "location": clickedcountry.timezone,
                           "isdaytime": clickedcountry.isdaytime
                         });
                       },
@@ -61,6 +64,8 @@ class _LocationState extends State<Location> {
                       ),
                     ),
                   );
-                })));
+                })
+                )
+                );
   }
 }
